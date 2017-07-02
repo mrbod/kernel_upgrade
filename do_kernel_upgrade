@@ -1,0 +1,11 @@
+#!/bin/sh
+
+VERSION=4.9.35
+BOOT=/boot
+IMG=$BOOT/initrd-$VERSION.img
+
+mkinitrd -c -o $IMG -k $VERSION -m ext4 -f ext4 -r /dev/sda7
+cp $IMG $BOOT/initrd.gz
+
+grub-mkconfig -o $BOOT/grub/grub.cfg
+
